@@ -8,10 +8,15 @@
     <title>0105 homepage template demo3</title>
     <style>
         p {border: 2px blue dashed; padding: 5px 0 8px 5px;}
+        p:hover {color: orange;}
+        a:hover {color: green;}
+        h2 {color: tan; border: 2px blue solid; padding: 5px 0 5px 5px;}
     </style>
 </head>
 <body>
     <h2><i>0105 homepage template demo3</i></h2>
+    <a href="#botpg" id="topg">Link to page bottom</a> <br>
+    <hr>
     <p>
         # git install notes 010524' <br>
         1- cd to directory want to have as repo <br>
@@ -44,7 +49,29 @@
         _______# startapp cmd -> change to directory with manage.py in it <br>
         >> py manage.py startapp app0105 <br>
         <br>
+    </p>
+    <p>
+        # to save data in repo <br>
+        >> git add . <br>
+        <br>
+        # to commit to repo <br>
+        >> git commit -m '0105 enter message here' <br>
+        <br>
+        # to push to remote repo <br>
+        >> git push -u origin main <br>
+        <br>
+        # to pull from remote repo <br>
+        >> git pull origin main <br>
+        <br>
+        # optional: if have merge history error <br>
+        >> git merge origin/main --allow-unrelated-histories <br>
+        <br>
 
     </p>
+
+
+
+    <hr>
+    <a href="#topg" id="botpg">Link to page top</a>
 </body>
 </html>
