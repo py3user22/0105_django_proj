@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0105 drf > django rest framework install demo1</title>
+</head>
+<body>
+
+    <h2>0105 DRF > django rest framework install notes</h2>
+    <a href="#botpg" id="topg">Link to page bottom</a> <br>
+    <a href="homepage0105.html">Link to homepage</a>
+    <hr>
+    <p>
+        ___________# settings.py <br>--------------<br>
+        INSTALLED_APPS = [ 'rest_framework', ] <br>
+    </p>
+    <hr>
+    <p>
+        ___________# views.py <br>--------------<br>
+        <a href="from" class="from">from</a> django.shortcuts <a href="import" class="import">import</a> render <br>
+        <a href="from" class="from">from</a> rest_framework.response <a href="import" class="import">import</a> Response <br>
+        <a href="from" class="from">from</a> rest_framework <a href="import" class="import">import</a> status <br>
+        <a href="from" class="from">from</a> rest_framework.decorators <a href="import" class="import">import</a> api_view <br>
+        <br>
+        <a href="apiview" class="apiview">@api_view(['GET', 'POST'])</a> <br>
+        <a href="def" class="def">def</a> <i>books</i>(request): <br>
+        ... <a href="return" class="return">return</a> Response('my response here is @0105 @ 1627', status=status.HTTP_200_OK)
+    </p>
+    <hr>
+    <p>
+        ___________# urls.py <br>---------------<br>
+        <a href="from" class="from">from</a> django.urls <a href="import" class="import">import</a> path <br>
+        <a href="from" class="from">from</a> <b>.</b> <a href="import" class="import">import</a> views <br>
+        <br>
+        urlpatterns = [<br>
+        .. path('books', views.books)<br>]<br>
+        <br>
+
+
+    </p>
+
+
+
+
+
+    <hr>
+    <a href="#topg" id="botpg">Link to page top</a>
+</body>
+</html>
