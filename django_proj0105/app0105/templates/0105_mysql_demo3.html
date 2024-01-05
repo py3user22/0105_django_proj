@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p {border: 2px blue dashed; border-radius: 5px 0 15px 0; padding: 5px 0 9px 5px;}
+    </style>
     <title>0103 database using mysql install</title>
 </head>
 <body>
@@ -10,29 +13,29 @@
     <p>
         # to check if mysql is ready to use <br>
         >> mysql <br> <br>
-        # to create database <br>---------------<br>
-        ex1.<br>-----<br> CREATE DATABASE db_name0103; <br>
-        ex2.<br>-----<br> create database db_name2; <br>
+        __________#ex1 to create database <br>---------------<br>
+        >> CREATE DATABASE db_name0103; <br><br>
+        ex2.<br>-----<br>>>  create database db_name2; <br>
         <br>
-        # to switch and use the database <br>
-        USE db_name0103; <br>Database changed<br>
+        __________# to switch and use the database <br>--------------<br>
+        >> USE db_name0103; <br>Database changed <- message output<br>
         <br>
-        # create new table with columns and datatypes <br>-----------------<br>
-        CREATE TABLE devices0103( deviceID int, deviceName varchar(50), price decimal );<br>
-        Query OK, 0 rows affected <br>
+        __________# create new table with columns and datatypes <br>-----------------<br>
+        >> CREATE TABLE devices0103( deviceID int, deviceName varchar(50), price decimal );<br>
+        <br>Output: -> Query OK, 0 rows affected <br>
         <br>
-        # show table cmd <br>
+        __________# show table cmd <br>
         >> SHOW tables;   |   show tables; <br>
         <br>
         +----------------------+ <br>
-        | Tables_in_cm_devices | <br>
+        | Tables_in_cm_devices  <br>
         +----------------------+ <br>
-        | devices              | <br>
+        | devices                <br>
         +----------------------+ <br>
         1 row in set (0.00 sec)  <br>
         <br>
-        # to check the table and its fields<br>
-        >> show columns from devices; <br>
+        ___________# to check the table and its fields<br>
+        >> show columns from devices; <br><br>
 +------------+---------------+------+-----+---------+-------+ <br>
 | Field      | Type          | Null | Key | Default | Extra | <br>
 +------------+---------------+------+-----+---------+-------+ <br>
@@ -44,7 +47,7 @@
 <br>
     </p>
     <p>
-        # ex2 create new table w/ records<br>
+        ____________# ex2 create new table w/ records<br>
         >> CREATE TABLE stock(deviceID int, quantity int, totalCost decimal);
 
 
