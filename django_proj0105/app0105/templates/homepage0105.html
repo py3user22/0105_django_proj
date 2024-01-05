@@ -66,6 +66,27 @@
         # optional: if have merge history error <br>
         >> git merge origin/main --allow-unrelated-histories <br>
         <br>
+    </p>
+    <p>
+        #0105 databases > mysql install notes <br>-------------------<br>
+        __________# must install app ' mysqlclient ' for django <br>
+        >> pipenv install mysqlclient .. | .. >> pip install mysqlclient<br>
+        <br>
+        <br>
+        #settings.py <br>------------<br>
+        DATABASES = {<br>
+        .. 'default': {<br>
+        ...... 'ENGINE': 'django.db.backends.mysql' <br>
+        ...... 'NAME': 'mydatabase' <br>
+        ...... 'USER': 'root', <br>
+        ...... 'PASSWORD': '', <br>
+        ...... 'HOST': '127.0.0.1', <br>
+        ...... 'PORT': '3306', <br>
+        ...... 'OPTIONS': {<br>
+        ........... 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" <br>
+        ...... }<br>
+        ... }<br>}<br>
+        <br>
 
     </p>
 
