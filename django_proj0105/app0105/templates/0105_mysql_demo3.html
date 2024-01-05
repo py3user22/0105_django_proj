@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0103 database using mysql install</title>
+</head>
+<body>
+    <h2><i>0105 mysql notes demo3</i></h2>
+    <p>
+        # to check if mysql is ready to use <br>
+        >> mysql <br> <br>
+        # to create database <br>---------------<br>
+        ex1.<br>-----<br> CREATE DATABASE db_name0103; <br>
+        ex2.<br>-----<br> create database db_name2; <br>
+        <br>
+        # to switch and use the database <br>
+        USE db_name0103; <br>Database changed<br>
+        <br>
+        # create new table with columns and datatypes <br>-----------------<br>
+        CREATE TABLE devices0103( deviceID int, deviceName varchar(50), price decimal );<br>
+        Query OK, 0 rows affected <br>
+        <br>
+        # show table cmd <br>
+        >> SHOW tables;   |   show tables; <br>
+        <br>
+        +----------------------+ <br>
+        | Tables_in_cm_devices | <br>
+        +----------------------+ <br>
+        | devices              | <br>
+        +----------------------+ <br>
+        1 row in set (0.00 sec)  <br>
+        <br>
+        # to check the table and its fields<br>
+        >> show columns from devices; <br>
++------------+---------------+------+-----+---------+-------+ <br>
+| Field      | Type          | Null | Key | Default | Extra | <br>
++------------+---------------+------+-----+---------+-------+ <br>
+| deviceID   | int           | YES  |     | NULL    |       | <br>
+| deviceName | varchar(50)   | YES  |     | NULL    |       | <br>
+| price      | decimal(10,0) | YES  |     | NULL    |       | <br>
++------------+---------------+------+-----+---------+-------+ <br>
+3 rows in set (0.00 sec) <br>
+<br>
+    </p>
+    <p>
+        # ex2 create new table w/ records<br>
+        >> CREATE TABLE stock(deviceID int, quantity int, totalCost decimal);
+
+
+
+    </p>
+
+</body>
+</html>
