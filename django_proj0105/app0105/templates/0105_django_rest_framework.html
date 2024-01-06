@@ -53,8 +53,36 @@
     .. <a href="def" class="def">def</a> <i> put</i>(self, request, pk): <br>
     ...... <a href="return" class="return">return</a> Response({"title":request.data.get('title')}, status.HTTP_200_OK) <br>
     <br>
+    </p>
+    <p>
+            <p>
+        ____________# ex0105 views.py  adding viewsets to outputs demo<br>-------------<br>
+        <a href="class" class="class">Class</a> BookView(viewsets.viewSet): <br>
+        <br>
+        .. <a href="def" class="def">def</a> list(self, request): <br>
+        ...... <a href="return" class="return">return</a> Response({}, status.HTTP_200_OK)
+        <br>
+        .. <a href="def" class="def">def</a> create(self, request): <br>
+        ...... <a href="return" class="return">return</a> Response({}, status.HTTP_200_OK)
+        <br>
+        .. <a href="def" class="def">def</a> update(self, request): <br>
+        ...... <a href="return" class="return">return</a> Response({}, status.HTTP_200_OK)
 
+        <br>
+        .. <a href="def" class="def">def</a> retrieve(self, request): <br>
+        ...... <a href="return" class="return">return</a> Response({}, status.HTTP_200_OK)
 
+        <br>
+        .. <a href="def" class="def">def</a> partial(self, request): <br>
+        ...... <a href="return" class="return">return</a> Response({}, status.HTTP_200_OK)
+
+        <br>
+        .. <a href="def" class="def">def</a> destroy(self, request): <br>
+        ...... <a href="return" class="return">return</a> Response({}, status.HTTP_200_OK)
+
+        <br>
+    </p>
+    </p>
 
 
 
@@ -73,8 +101,16 @@
     </p>
     <hr>
     <p>
+        ____________# ex0105 urls.py map the class <br>-------------<br>
+        <br>
+        urlpatterns = [<br>
+        .. path('books', views.BookView.as_view( <br>
+        ...... { 'get': 'list', 'post': 'create', })), <br>
+        .. path('books/< int:pk>', views.BookView.as_view( <br>
+        ...... {'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy',})),
+        ]<br>
 
-
+        <br>
     </p>
 
 
