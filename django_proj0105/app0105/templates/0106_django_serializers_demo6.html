@@ -16,7 +16,7 @@
     <a href="homepage0105.html">Link to homepage</a>
     <hr>
     <p>
-        ________#ex0106 display models and there fields as hyperlinks > HyperlinkedRelatedField :D <br>------------<br>
+        ________#ex0106 display models and there fields as hyperlinks > HyperlinkedRelatedField :D > serializers.py <br>------------<br>
         <br>
         ___________# method1 <br>----------------<br>
         <a href="from" class="from">from</a> rest_framework <a href="import" class="import">import</a> serializers <br>
@@ -24,6 +24,11 @@
         <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> MenuItem, Category <br>
         <br>
         <a href="class" class="class">class</a> <i><b>CategorySerializer</b></i>(serializers.ModelSerializer): <br>
+        .. stock = serializers.IntegerField(source='inventory') <br>
+        .. price_after_tax = serializers.SerializerMethodField(method_name='calculate_tax') <br>
+        .. category = CategorySerializer() <br>
+        <br>
+
         .. <a href="class" class="class">class</a> Meta: <br>
         ...... model = <b>Category</b> <br>
         ...... fields = ['id', 'slug', 'title'] <br>
@@ -46,12 +51,12 @@
     <sup> <a href="#botpg" id="topg">Link to page bottom</a> </sup> <br>
     <hr>
     <p>
-        _________#ex0106 method2 on serializer to show every field in model <br>
-        # note1:<br>--------<br>all relationships in this serializer will display every field related to that model using > depth = 1 <br>
+        _________#ex0106 method2 <br> edit on serializer to show every field in model <br>
+        # note1: serializers.py <br>--------<br>all relationships in this serializer will display every field related to that model using > depth = 1 <br>
         --------------<br><br>
        <a href="class" class="class">class</a> <i><b>MenuItemSerializer</b></i>(serializers.ModelSerializer): <br>
-        .. stock = <br>
-        .. price_after_tax = <br>
+        .. stock = serializers.IntegerField(source='inventory') <br>
+        .. price_after_tax = serializers.SerializerMethodField(method_name='calculate_tax') <br>
         .. <strike>category = CategorySerializer()</strike> <br>
         <br>
         .. <a href="class" class="class">class</a> Meta: <br>
@@ -59,12 +64,46 @@
         ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category'] <br>
         ...... depth = 1 <br>
         <br>
-        <a href="def" class="def">def</a> calculate_tax(self, product:<b>MenuItem</b>): <br>
-        .. <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
+        .. <a href="def" class="def">def</a> calculate_tax(self, product:<b>MenuItem</b>): <br>
+        ...... <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
         <br>
         <br>
     </p>
+    <p>
+        ________#ex1016 > Display model fields as hyperlink demo1 <br><br>
+        2 ways to display every related model fields as hyperlink in API output <br>
+        1- HyperlinkedRelatedField <br>
+        >> <i>queryset</i>
+        <br>--------> finds the related object and a view name used to map the URL pattern <br>
 
+
+
+
+        <br>
+        2- HyperlinkedModelSerializer <br>
+        <br>
+
+    </p>
+    <p>
+        __________#ex0106 views.py <br>---------------<br>
+        <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> <b>Category</b> <br>
+        <a href="from" class="from">from</a> .serializers <a href="import" class="import">import</a> <b>CategorySerializer</b> <br>
+        <br>
+        @api_view() <br>
+        <a href="def" class="def">def</a> category_detail(request, pk): <br>
+        .. category = get_object_or_404(<b>Category</b>,pk=pk)  <br>
+        .. serialized_category = <b>CategorySerializer</b>(category) <br>
+        .. <a href="return" class="return">return</a> Response(serialized_category.data)<br>
+        <br>
+        <br>
+
+    </p>
+    <p>
+        __________#ex0106 urls.py <br>--------------- connects to views.py method <br>
+        urlpatterns = [<br>
+        .. path('category/< int:pk>', views.category_detail, name='category-detail')
+        ]<br>
+    </p>
 
 
 
