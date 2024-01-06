@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         p {border: 2px blue dashed; padding: 5px 10px 10px 5px;}
+        .apiv {color: orange;}
     </style>
     <title>0106 django serializers demo6 > </title>
 </head>
@@ -125,8 +126,55 @@
         .. <a href="return" class="return">return</a> Response(serialized_category.data)<br>
         <br>
         <br>
+    </p>
+    <hr>
+    <sup> <a href="#botpg" id="topg">Link to page bottom</a> </sup> <br>
+    <hr>
+    <p>
+        _________#ex0106 views.py <br> --------------<br>
+        <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> <b>MenuItem</b> <br>
+        <a href="from" class="from">from</a> .serializers <a href="import" class="import">import</a> <b>MenuItemSerializer</b> <br>
+        <a href="from" class="from">from</a> djago.shortcuts <a href="import" class="import">import</a> get_object_or_404 <br>
+        <a href="from" class="from">from</a> rest_framework.response <a href="import" class="import">import</a> Response <br>
+        <a href="from" class="from">from</a> rest_framework.decorators <a href="import" class="import">import</a> <b>api_view</b> <br>
+        <a href="from" class="from">from</a> rest_framework<a href="import" class="import">import</a> <b>status</b> <br>
+
+        <br>
+        <br>
+        <a href="apiv" class="apiv">@api_view()</a> <br>
+        <a href="def" class="def">def</a> <i>single_item</i>(request, id): <br>
+        .. item = get_object_or_404(<b>MenuItem</b>, pk=id) <br>
+        .. serialized_item = <b>MenuItemSerializer</b>(item) <br>
+        .. <a href="return" class="return">return</a> Response(serialized_item.data) <br>
+        <br>
+        <br>______# ex1 0106 original method before edits <br>---------------<br>
+        <a href="apiv" class="apiv">@api_view(['GET','POST'])</a> <br>
+        <a href="def" class="def">def</a> <i>menu_items</i>(request): <br>
+        .. items = <b>MenuItem</b>.objects.select_related('category').all() <br>
+        .. serialized_item = <b>MenuItemSerializer</b>(items, many=True) <br>
+        .. <a href="return" class="return">return</a> Response(serialized_item.data) <br>
+        <br>
+    </p>
+    <p>
+        _________#ex2 0106 views.py added if statement <br>----------------<br>
+        <a href="apiv" class="apiv">@api_view(['GET','POST'])</a> <br>
+        <a href="def" class="def">def</a> <i>menu_items</i>(request): <br>
+        .. <a href="if" class="if">if</a> request.method == 'GET': <br>
+        ...... items = <b>MenuItem</b>.objects.select_related('category').all() <br>
+        ...... serialized_item = <b>MenuItemSerializer</b>(items, many=True) <br>
+        ...... <a href="return" class="return">return</a> Response(serialized_item.data) <br>
+        <br>
+        .. <a href="if" class="if">if</a> request.method == 'POST': <br>
+        ...... serialized_item = <i><b>MenuItemSerializer</b></i>(data=request.data) <br>
+        ...... serialized_item.is_valid(raise_exception=True) <br>
+        ...... serialized_item.save() <br>
+        ...... <a href="return" class="return">return</a> Response(serialized_item.data, status.HTTP_201_CREATED) <br>
+        <br>
+
 
     </p>
+    <br>
+    <hr>
     <p>
         __________#ex0106 urls.py <br>--------------- connects to views.py method <br><br>
         urlpatterns = [<br>
