@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        p {border: 2px blue dashed; padding: 5px 10px 10px 5px;}
+    </style>
+    <title>0106 django serializers demo6 > </title>
+</head>
+<body>
+    <h2>0106 django serializers demo6</h2>
+    <a href="#botpg" id="topg">Link to page bottom</a> <br>
+    <a href="homepage0105.html">Link to homepage</a>
+    <hr>
+    <p>
+        ________#ex0106 display models and there fields as hyperlinks > HyperlinkedRelatedField :D <br>------------<br>
+        <br>
+        ___________# method1 <br>----------------<br>
+        <a href="from" class="from">from</a> rest_framework <a href="import" class="import">import</a> serializers <br>
+        <a href="from" class="from">from</a> decimal <a href="import" class="import">import</a> Decimal <br>
+        <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> MenuItem, Category <br>
+        <br>
+        <a href="class" class="class">class</a> <i><b>CategorySerializer</b></i>(serializers.ModelSerializer): <br>
+        .. <a href="class" class="class">class</a> Meta: <br>
+        ...... model = <b>Category</b> <br>
+        ...... fields = ['id', 'slug', 'title'] <br>
+        <br>
+        <br>
+        <a href="class" class="class">class</a> <i><b>MenuItemSerializer</b></i>(serializers.ModelSerializer): <br>
+        .. <a href="class" class="class">class</a> Meta: <br>
+        ...... model = <b>MenuItem</b> <br>
+        ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category'] <br>
+        <br>
+        <a href="def" class="def">def</a> calculate_tax(self, product:<b>MenuItem</b>): <br>
+        .. <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </p>
+    <hr>
+    <sup> <a href="#botpg" id="topg">Link to page bottom</a> </sup> <br>
+    <hr>
+    <p>
+        _________#ex0106 method2 on serializer to show every field in model <br>
+        # note1:<br>--------<br>all relationships in this serializer will display every field related to that model using > depth = 1 <br>
+        --------------<br><br>
+       <a href="class" class="class">class</a> <i><b>MenuItemSerializer</b></i>(serializers.ModelSerializer): <br>
+        .. stock = <br>
+        .. price_after_tax = <br>
+        .. <strike>category = CategorySerializer()</strike> <br>
+        <br>
+        .. <a href="class" class="class">class</a> Meta: <br>
+        ...... model = <b>MenuItem</b> <br>
+        ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category'] <br>
+        ...... depth = 1 <br>
+        <br>
+        <a href="def" class="def">def</a> calculate_tax(self, product:<b>MenuItem</b>): <br>
+        .. <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
+        <br>
+        <br>
+    </p>
+
+
+
+
+    <br>
+    <hr>
+    <a href="#topg" id="botpg">Link to page top</a>
+</body>
+</html>
