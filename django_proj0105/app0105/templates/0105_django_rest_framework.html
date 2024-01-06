@@ -95,11 +95,22 @@
         .. serializer_class = <i><b>MenuItemSerializer</b></i> <br>
         <br>
         <br>
+        <a href="class" class="class">class</a> <i><b>SingleMenuItemsView</b></i>(generics.RetrieveUpdateAPIView, generics.DestroyAPIView): <br>
+        .. queryset = <b>MenuItem</b>.objects.all() <br>
+        .. serializer_class = <i><b>MenuItemSerializer</b></i> <br>
+        <br>
+        <br>
         _________ urls.py path to generic class <br>-----------------------<br>
         urlpatterns = [<br>
         .. path('menu-items', views.<i><b>MenuItemsView</b></i>.as_view(), <br>
+        .. path('menu-items/< int:pk>', views.<i><b>SingleMenuItemsView</b></i>.as_view()), <br>
         ]<br>
+        <br><br>
+        __________ go to url /api/menu-items/ <br>
+
     </p>
+
+
 
 
     <hr>
