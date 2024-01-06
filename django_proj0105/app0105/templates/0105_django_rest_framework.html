@@ -82,8 +82,24 @@
 
         <br>
     </p>
-    </p>
 
+
+    <p>
+        ________ views.py ex0105 generic view class used <br>------------------<br>
+        <a href="from" class="from">from</a> rest_framework <a href="import" class="import">import</a> generics <br>
+        <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> <b>MenuItem</b>  <br>
+        <a href="from" class="from">from</a> .serializers <a href="import" class="import">import</a> <i><b>MenuItemSerializer</b></i>  <br>
+        <br><br>
+        <a href="class" class="class">class</a> <i><b>MenuItemsView</b></i>(generics.ListCreateAPIView): <br>
+        .. queryset = <b>MenuItem</b>.objects.all() <br>
+        .. serializer_class = <i><b>MenuItemSerializer</b></i> <br>
+        <br>
+        <br>
+        _________ urls.py path to generic class <br>-----------------------<br>
+        urlpatterns = [<br>
+        .. path('menu-items', views.<i><b>MenuItemsView</b></i>.as_view(), <br>
+        ]<br>
+    </p>
 
 
     <hr>
@@ -111,6 +127,40 @@
         ]<br>
 
         <br>
+    </p>
+    <hr>
+    <p>
+        __________# models.py <br>--------------<br>
+        <a href="from" class="from">from</a> django.db <a href="import" class="import">import</a> models <br>
+        <br>
+        <a href="class" class="class">class</a> <b>MenuItem</b>(models.Model): <br>
+        .. title = models.CharField(max_length=255) <br>
+        .. price = models.DecimalField(max_digit=6, decimal_places=2) <br>
+        .. inventory = models.SmallIntegerField() <br>
+        <br>
+    </p>
+    <hr>
+    <p>
+        __________# serializers.py <br>------------<br>
+        from rest_framework import serializers <br>
+        from .models import MenuItem <br>
+        <br>
+        <a href="class" class="class">class</a> <b><i>MenuItemSerializer</i></b>(serializers.ModelSerializer): <br>
+        .. <a href="class" class="class">class</a> Meta: <br>
+        ...... model = <b>MenuItem</b> <br>
+        ...... fields = [ <br>
+        .......... 'id', <br>
+        .......... 'title', <br>
+        .......... 'price', <br>
+        .......... 'inventory', <br>
+        ...... ] <br>
+        <br>
+    </p>
+    <hr>
+    <p>
+        _________# notes: ex0105 <br>------------<br>
+        generic view classes in drf benefits? <br>
+        >> auto builds API views to perform CRUD operations for db models. <br>
     </p>
 
 
