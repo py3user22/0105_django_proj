@@ -75,12 +75,41 @@
         1- HyperlinkedRelatedField <br>
         >> <i>queryset</i>
         <br>--------> finds the related object and a view name used to map the URL pattern <br>
-
-
-
-
         <br>
-        2- HyperlinkedModelSerializer <br>
+        ___# serializers.py > create HyperLinkedRelatedField <br><br>
+        from .models import Category <br>
+        <br>
+        <a href="class" class="class">class</a> <i><b>MenuItemSerializer</b></i>(serializers.ModelSerializer): <br>
+        .. stock = serializers.IntegerField(source='inventory') <br>
+        .. price_after_tax = serializers.SerializerMethodField(method_name = 'calculate_tax') <br>
+        .. category = serializers.HyperlinkedRelatedField( <br>
+        ...... queryset = Category.objects.all(), <br>
+        ...... view_name='category-detail' <br>
+        .. ) <br>
+        class Meta: <br>
+        .. model = MenuItem <br>
+        .. fields = ['id','title','price','stock', 'price_after_tax','category']<br><br>
+        def calculate_tax(self, product:MenuItem): <br>
+        .. return product.price * Decimal(1.1) <br>
+        <br>
+        <br>
+    </p>
+    <p>
+        ________#ex0106 2- HyperlinkedModelSerializer <br>-------------<br>
+        # edit to extend the serializers class <br>
+        <br>
+        <a href="class" class="class">class</a> <i><b>MenuItemSerializer</b></i>(serializers.<i>HyperlinkedModelSerializer</i>): <br>
+        <br>
+        .. stock = serializers.IntegerField(source='inventory') <br>
+        .. price_after_tax = serializers.SerializerMethodField(method_name='calculate_tax') <br>
+        <br>
+        .. <a href="class" class="class">class</a> Meta: <br>
+        ...... model = <b>MenuItem</b> <br>
+        ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category'] <br>
+        <br>
+        .. <a href="def" class="def">def</a> calculate_tax(self, product:<b>MenuItem</b>): <br>
+        ...... <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
+        <br>
         <br>
 
     </p>
@@ -99,9 +128,11 @@
 
     </p>
     <p>
-        __________#ex0106 urls.py <br>--------------- connects to views.py method <br>
+        __________#ex0106 urls.py <br>--------------- connects to views.py method <br><br>
         urlpatterns = [<br>
-        .. path('category/< int:pk>', views.category_detail, name='category-detail')
+        .. path('category/< int:pk>', views.category_detail, name='category-detail') <br>
+        .. path('menu-items', views.menu_items), <br>
+        .. path('manu-items/< int:id>', views.single_item), <br>
         ]<br>
     </p>
 
