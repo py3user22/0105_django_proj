@@ -31,13 +31,48 @@
     </p>
     <hr>
     <p>
+        ______# ex0105 views.py > add plain output string as output <br>
+        from django.http import HttpResponse <br>
+        <br>
+        def books(request): <br>
+        .. return HttpResponse('list of the books, can also be dictionary,', status=status.HTTP_200_OK) <br>
+        <br>
+
+    </p>
+        _____# to map a specific class>method, need to declare as <a href="stat" class="stat">@staticmethod</a> <br>
+    <a href="class" class="class">class</a> Orders(): <br>
+    .. <a href="stat" class="stat">@staticmethod</a> <br>
+    .. <a href="apiv" class="apiv">@api_view()</a> <br>
+    .. <a href="def" class="def">def</a> <i>listOrders</i>(request): <br>
+    ...... <a href="return" class="return">return</a> Response({'message':'orders list1'}, 200) <br>
+    <br>
+    ______# class extending the APIView <br>
+    <a href="class" class="class">class</a> BookView(APIView): <br>
+    .. <a href="def" class="def">def</a> <i> get</i>(self, request, pk): <br>
+    ...... <a href="return" class="return">return</a> Response({"message":"single book with id " + <a href="str">str</a>(pk)}, status.HTTP_200_OK) <br>
+    .. <a href="def" class="def">def</a> <i> put</i>(self, request, pk): <br>
+    ...... <a href="return" class="return">return</a> Response({"title":request.data.get('title')}, status.HTTP_200_OK) <br>
+    <br>
+
+
+
+
+
+    <hr>
+    <p>
         ___________# urls.py <br>---------------<br>
         <a href="from" class="from">from</a> django.urls <a href="import" class="import">import</a> path <br>
         <a href="from" class="from">from</a> <b>.</b> <a href="import" class="import">import</a> views <br>
         <br>
         urlpatterns = [<br>
-        .. path('books', views.books)<br>]<br>
+        .. path('books', views.books)<br>
+        .. path('orders', views.Orders.listOrders), <br>
+        .. path('books/< int:pk>', views.BookView.as_view() <br>
+        ] <br>
         <br>
+    </p>
+    <hr>
+    <p>
 
 
     </p>
