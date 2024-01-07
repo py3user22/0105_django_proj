@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bdc239f0-47cd-400b-a6ec-e3d6f9a95a22" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_proj0105/app0105/templates/homepage0105.html" beforeDir="false" afterPath="$PROJECT_DIR$/django_proj0105/app0105/templates/homepage0105.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_proj0105/app0105/templates/0106_django_renderers_install.html" beforeDir="false" afterPath="$PROJECT_DIR$/django_proj0105/app0105/templates/0106_django_renderers_install.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

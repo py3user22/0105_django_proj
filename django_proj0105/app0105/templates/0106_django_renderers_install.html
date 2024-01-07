@@ -14,7 +14,8 @@
         .menu {color: green;}
         .mit {color: tan;}
         .mist {color: grey;}
-        .ther {color: tan;}
+        .ther {color: blue;}
+        p {border: 2px dashed blue; padding: 5px 10px 7px 5px;}
     </style>
 </head>
 <body>
@@ -25,17 +26,32 @@
         ______#ex0106 django renderers install for xml output <br>--------------<br>
         >> pipenv install djangorestframework-xml <br>
         <br>
+        >> pipenv install djangorestframework-csv <br>
+        <br>
+        >> pipenv install djangorestframework-yaml <br>
+
+        <br>
+
+
         _____#settings.py edit to add the extention <br>--------------<br>
         REST_FRAMEWORK = {<br>
         .. 'DEFAULT_RENDERER_CLASSES': [<br>
+        ...... 'rest_framework.renderers.JSONRenderer', <br>
+        ...... 'rest_framework.renderers.BrowsableAPIRenderer', <br>
         ...... 'rest_framework_xml.renderers.XMLRenderer', <br>
+        ...... 'rest_framework_csv.renderers.CSVRenderer', <br>
+        ...... 'rest_framework_yaml.renderers.YAMLRenderer', <br>
         .. ] <br>
         } <br>
     </p>
     <hr>
         <a href="mit" class="mit"><i><b>MenuItem</b></i></a> is model and
         <a href="mist" class="mist"><i><b>MenuItemSerializer</b></i></a> is serializer
-        <a href="ther" class="ther"><i><b>TemplateHTMLRenderer</b></i></a>
+        <a href="ther" class="ther"><i><b>TemplateHTMLRenderer</b></i></a> <br>
+        <a href="renc" class="renc">@renderer_classes</a> ([<a href="ther" class="ther"><i><b>CSVRenderer</b></i></a>]) __# to display csv  <br>
+        <a href="renc" class="renc">@renderer_classes</a> ([<a href="ther" class="ther"><i><b>TemplateHTMLRenderer</b></i></a>]) __# to display html page <br>
+        <a href="renc" class="renc">@renderer_classes</a> ([<a href="ther" class="ther"><i><b>YAMLRenderer</b></i></a>]) __# to display yaml output <br>
+
 
     <hr>
     <br>
@@ -43,6 +59,9 @@
         __views.py____# <i><b>TemplateHTMLRenderer</b></i> <br>--------------<br>
         <a href="from" class="from">from</a> rest_framework.renderers <a href="import" class="import">import</a> <i><b>TemplateHTMLRenderer</b></i> <br>
         <a href="from" class="from">from</a> rest_framework.decorators <a href="import" class="import">import</a> api_view, renderer_classes <br>
+        <a href="from" class="from">from</a> rest_framework_csv<b>.</b>renderers <a href="import" class="import">import</a> CSVRenderer <br>
+        <a href="from" class="from">from</a> rest_framework_yaml<b>.</b>renderers <a href="import" class="import">import</a> YAMLRenderer <br>
+
         <br>
         <a href="apiv" class="apiv">@api_view()</a> <br>
         <a href="renc" class="renc">@renderer_classes</a> ([<a href="ther" class="ther"><i><b>TemplateHTMLRenderer</b></i></a>]) <br>
@@ -50,7 +69,18 @@
         .. items = <a href="mit" class="mit"><i><b>MenuItem</b></i></a>.objects.select_related('category').all()  <br>
         .. serialized_item = <a href="mist" class="mist"><i><b>MenuItemSerializer</b></i></a>(items, many=True) <br>   <br>
         .. <a href="return" class="return">return</a> Response({'data': serialized_item.data}, template_name='menu-items.html') <br>
-
+        <br>
+        <br>
+    </p>
+    <hr>
+    <br>
+    <p>
+        __urls.py____# 0106 add path <br>-------------<br>
+        urlpatterns = [<br>
+        .. path('menu', views.menu),] <br>
+        .. path('menu-items', views.menu_items), <br>
+        .. path('menu-items/< int:id>', views.single_item), <br>
+        ] <br>
 
 
     </p>
