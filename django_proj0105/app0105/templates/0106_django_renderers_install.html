@@ -105,10 +105,51 @@
         .. path('menu-items', views.menu_items), <br>
         .. path('menu-items/< int:id>', views.single_item), <br>
         ] <br>
-
-
+        <br>
+        <br>
+        __#0107 w2 lab urls.py <br>---------------<br>
+        urlpatterns = [ <br>
+        .. path('menu-items', views.MenuItemsView.as_view()), <br>
+        .. path('menu-items/< int:pk>', views.SingleMenuItemView.as_view()), <br>
+        ] <br>
     </p>
 
+    <hr>
+    <br>
+    <br>
+    <p>
+        ___views.py___#0107 lab <br>------------------<br>
+        <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> <a href="mit" class="mit"><i><b>MenuItem</b></i></a> <br>
+        <a href="from" class="from">from</a> .serializers <a href="import" class="import">import</a> <a href="mist" class="mist"><i><b>MenuItemSerializer</b></i></a> <br>
+        <a href="from" class="from">from</a> rest_framework <a href="import" class="import">import</a> generics <br>
+        <br>
+        <a href="class" class="class">class</a> <i>MenuItemsView</i>(generics.ListCreateAPIView): <br>
+        .. queryset = <a href="mit" class="mit"><i><b>MenuItem</b></i></a>.objects.all() <br>
+        .. serializer_class = <a href="mist" class="mist"><i><b>MenuItemSerializer</b></i></a> <br>
+        <br>
+        <a href="class" class="class">class</a> <i>SingleMenuItemView</i>(generics.RetrieveUpdateDestroyAPIView): <br>
+        .. queryset = <a href="mit" class="mit"><i><b>MenuItem</b></i></a>.objects.all() <br>
+        .. serializer_class = <a href="mist" class="mist"><i><b>MenuItemSerializer</b></i></a> <br>
+        <br>
+    </p>
+    <hr>
+    <p>
+        __serializers.py ___#ex0107 lab <br>------------------<br>
+        <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> <a href="mit" class="mit"><i><b>MenuItem</b></i></a> <br>
+        <a href="from" class="from">from</a> rest_framework <a href="import" class="import">import</a> serializers <br>
+        <br>
+        <a href="class" class="class">class</a> MenuItemSerializer(serializers.ModelSerializer): <br>
+        .. <a href="class" class="class">class</a> Meta: <br>
+        ...... model = <a href="mit" class="mit"><i><b>MenuItem</b></i></a> <br>
+        ...... fields = ['id', 'title', 'price', 'inventory'] <br>
+        ...... extra_kwargs = { <br>
+        .......... 'price': {'min_value': 2} <br>
+        .......... 'inventory': {'min_value':0} <br>
+        ...... } <br>
+        <br>
+        <br>
+
+    </p>
 
 
 
