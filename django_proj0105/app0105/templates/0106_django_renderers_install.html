@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0106 django renderers install demo1</title>
+    <style>
+        .from {color: orange;}
+        .import {color: purple;}
+        .apiv {color: red;}
+        .renc {color: red;}
+        .menu {color: green;}
+        .mit {color: tan;}
+        .mist {color: grey;}
+        .ther {color: tan;}
+    </style>
+</head>
+<body>
+    <h2>0106 django renderers install & notes </h2>
+    <p>
+        note: start pipenv shell if not already
+        <br>>> pipenv shell <br><br>
+        ______#ex0106 django renderers install for xml output <br>--------------<br>
+        >> pipenv install djangorestframework-xml <br>
+        <br>
+        _____#settings.py edit to add the extention <br>--------------<br>
+        REST_FRAMEWORK = {<br>
+        .. 'DEFAULT_RENDERER_CLASSES': [<br>
+        ...... 'rest_framework_xml.renderers.XMLRenderer', <br>
+        .. ] <br>
+        } <br>
+    </p>
+    <hr>
+        <a href="mit" class="mit"><i><b>MenuItem</b></i></a> is model and
+        <a href="mist" class="mist"><i><b>MenuItemSerializer</b></i></a> is serializer
+        <a href="ther" class="ther"><i><b>TemplateHTMLRenderer</b></i></a>
+
+    <hr>
+    <br>
+    <p>
+        __views.py____# <i><b>TemplateHTMLRenderer</b></i> <br>--------------<br>
+        <a href="from" class="from">from</a> rest_framework.renderers <a href="import" class="import">import</a> <i><b>TemplateHTMLRenderer</b></i> <br>
+        <a href="from" class="from">from</a> rest_framework.decorators <a href="import" class="import">import</a> api_view, renderer_classes <br>
+        <br>
+        <a href="apiv" class="apiv">@api_view()</a> <br>
+        <a href="renc" class="renc">@renderer_classes</a> ([<a href="ther" class="ther"><i><b>TemplateHTMLRenderer</b></i></a>]) <br>
+        <a href="def" class="def">def</a> <a href="menu" class="menu"><i>menu</i></a>(request): <br>
+        .. items = <a href="mit" class="mit"><i><b>MenuItem</b></i></a>.objects.select_related('category').all()  <br>
+        .. serialized_item = <a href="mist" class="mist"><i><b>MenuItemSerializer</b></i></a>(items, many=True) <br>   <br>
+        .. <a href="return" class="return">return</a> Response({'data': serialized_item.data}, template_name='menu-items.html') <br>
+
+
+
+    </p>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0106 menu items from renderers demo</title>
+
+</head>
+<body>
+    <h2>0106 renderers demo > menu-items.html save</h2>
+    <p>
+
+    </p>
+    <table width="100%" style="text-align: left;"> <br>
+    .. <tr> <br>
+    ...... <th>Item</th> <!-- item column heading --> <br>
+    .......... <th>Price</th> <!-- price column heading --> <br>
+    .......... <th>Price After Tax</th> <!-- price after tax column heading --> <br>
+    .......... <th>Stock</th> <!-- stock column heading --> <br>
+    .. </tr> <br>
+    .. {% for item in data %} <br>
+    ..  <tr> <br>
+    ...... <td>{{ item.title }}</td> <br>
+    ...... <td>{{ item.price }}</td> <br>
+    ...... <td>{{ item.price_after_tax }}</td> <br>
+    ...... <td>{{ item.stock }}</td> <br>
+    .. </tr> <br>
+    .. {% endfor %} <br>
+    </table> <br>
+</body>
+</html>
