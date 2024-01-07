@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0107 django filtering demo1 </title>
+</head>
+<body>
+    <h2>0107 django filtering demo</h2>
+    <hr>
+    <p>
+        <sup>
+        <a href="from" class="from">from</a>  <br>
+        <a href="impo" class="impo">import</a> <br>
+        <a href="def" class="def">def</a> <br>
+        <a href="apiv" class="apiv">@api_view()</a> <br>
+        <a href="retu" class="retu">return</a> <br>
+        </sup>
+    </p>
+    <hr>
+    <br>
+    <p>
+        __views.py ___#ex 0107 django filters <br>--------------------<br>
+        <a href="from" class="from">from</a> .models <a href="impo" class="impo">import</a> MenuItem <br>
+        <a href="from" class="from">from</a> .serializers <a href="impo" class="impo">import</a> MenuItemSerializer <br>
+        <a href="from" class="from">from</a> rest_framework <a href="impo" class="impo">import</a> status <br>
+        <a href="from" class="from">from</a> rest_framework.response <a href="impo" class="impo">import</a> Response <br>
+        <a href="from" class="from">from</a> rest_framework.decorators <a href="impo" class="impo">import</a> api_view, renderer_classes <br>
+        <a href="from" class="from">from</a> django.shortcuts <a href="impo" class="impo">import</a> get_object_or_404 <br>
+        <br>
+        <br>
+        <a href="apiv" class="apiv">@api_view</a>(['GET','POST']) <br>
+        <a href="def" class="def">def</a> menu_items(request): <br>
+        .. if(request.method=='GET'): <br>
+        ...... items = MenuItem.objects.select_related('category').all() <br>
+        ...... category_name = request.query_params.get('category') <br>
+        ...... to_price = request.query_params.get('to_price') <br>
+        ...... search = request.query_params.get('search') <br>
+        ...... if category_name: <br>
+        .......... items = items.filter(category__title=category_name) <br>
+        ...... if to_price: <br>
+        .......... items = items.filter(price__lte=to_price) <br>
+
+        ...... serialized_item = MenuItemSerializer(items, many=True) <br>
+        ...... <a href="retu" class="retu">return</a> Response(serialized_item.data) <br>
+
+        .. elif(request.method=='POST'): <br>
+        ...... serialized_item = MenuItemSerializer(data=request.data) <br>
+        ...... serialized_item.is_valid(raise_exception=True) <br>
+        ...... serialized_item.save() <br>
+        ...... <a href="retu" class="retu">return</a> Response(serialized_item.validated_data, status.HTTP_201_CREATED) <br>
+        <br>
+
+        <br>
+        <a href="apiv" class="apiv">@api_view</a>() <br>
+        <a href="def" class="def">def</a> single_item(request, id): <br>
+        .. item = get_object_or_404(MenuItem, pk=id) <br>
+        .. serialized_item = MenuItemSerializer(item) <br>
+
+
+    </p>
+</body>
+</html>
