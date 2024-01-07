@@ -29,23 +29,23 @@
         <a href="from" class="from">from</a> .models <a href="import" class="import">import</a> <a href="meni" class="meni"><b>MenuItem</b></a>, Category <br>
         <br>
         <a href="class" class="class">class</a> <i><b>CategorySerializer</b></i>(serializers.ModelSerializer): <br>
-        .. stock = serializers.IntegerField(source='inventory') <br>
-        .. price_after_tax = serializers.SerializerMethodField(method_name='calculate_tax') <br>
-        .. category = CategorySerializer() <br>
-        <br>
-
         .. <a href="class" class="class">class</a> Meta: <br>
         ...... model = <b>Category</b> <br>
         ...... fields = ['id', 'slug', 'title'] <br>
         <br>
         <br>
         <a href="class" class="class">class</a> <a href="miss" class="miss"><i><b>MenuItemSerializer</b></i></a>(serializers.ModelSerializer): <br>
+        .. stock = serializers.IntegerField(source='inventory') <br>
+        .. price_after_tax = serializers.SerializerMethodField(method_name='calculate_tax') <br>
+        .. category = CategorySerializer(read_only=True) <br>
+        .. category_id = serializers.IntegerField(write_only=True) <br>
+        <br>
         .. <a href="class" class="class">class</a> Meta: <br>
         ...... model = <a href="meni" class="meni"><b>MenuItem</b></a> <br>
-        ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category'] <br>
+        ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category', 'category_id'] <br>
         <br>
-        <a href="def" class="def">def</a> calculate_tax(self, product:<a href="meni" class="meni"><b>MenuItem</b></a>): <br>
-        .. <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
+        .. <a href="def" class="def">def</a> calculate_tax(self, product:<a href="meni" class="meni"><b>MenuItem</b></a>): <br>
+        ...... <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
         <br>
         <br>
         <br>
