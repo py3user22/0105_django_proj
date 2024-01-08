@@ -9,7 +9,7 @@
     <style>
         .def {color: orange;} .from {color: tan;} .apiv {color: purple;} .meni {color: green;}
         .miss {color: green;} .retu {color: red;} p {border: 2px blue dashed; padding: 5px;}
-
+        .mivs {color: brown;}
 
     </style>
 </head>
@@ -17,7 +17,7 @@
     <h2>0108 pagination > to add page limits per API call to server </h2> <br>
     <h3>___#0108 views.py save </h3>
     <p>
-        <a href="from" class="from">from</a> rest_framwork <a href="impo" class="impo">import</a> status <br>
+        <a href="from" class="from">from</a> rest_framwork <a href="impo" class="impo">import</a> status, viewsets <br>
         <a href="from" class="from">from</a> decimal <a href="impo" class="impo">import</a> Decimal <br>
         <a href="from" class="from">from</a> django.shortcuts <a href="impo" class="impo">import</a> get_object_or_404 <br>
         <a href="from" class="from">from</a> rest_framwork.response <a href="impo" class="impo">import</a> Response <br>
@@ -71,16 +71,60 @@
         ...... <a href="retu" class="retu">return</a> Response(serialized_item.validated_data, status.HTTP_201_CREATED) <br>
         <br>
         <br>
+    </p>
+    <hr>
+    <br>
+    <br>
+    <p>
+        __views.py #ex2 0108 scaffold the project <br>--------------<br>
+        <a href="clas" class="clas">class</a> <a href="mivs" class="mivs"><b><i>MenuItemViewSet</i></b></a>(viewsets.ModelViewSet): <br>
+        .. queryset = <a href="meni" class="meni">MenuItem</a>.objects.all() <br>
+        .. serializer_class = <a href="miss" class="miss">MenuItemSerializer</a> <br>
+        .. ordering_fields=['price', 'inventory'] <br>
+        .. search_fields=['title', 'category__title'] <br>
+        <br>
+        <br>
+        __urls.py #ex2 0108 scaffold project map the URLS <br>---------------<br>
+        urlpatterns = [<br>
+        .. path('menu-items', views.<a href="mivs" class="mivs"><b><i>MenuItemViewSet</i></b></a>.as_view({'get': 'list'})), <br>
+        .. path('menu-items/< int:pk>', views.<a href="mivs" class="mivs"><b><i>MenuItemViewSet</i></b></a>.as_view({'get': 'retrieve'})), <br>
+        ]<br>
+    </p>
+    <hr>
+    <br>
+    <br>
+    <p>
+        __settings.py #ex2 0108 adding the script for filters <br>--------------------<br>
+        REST_FRAMEWORK = { <br>
+        .. 'DEFAULT_RENDERER_CLASSES': [<br>
+        ...... 'rest_framework.renderers.JSONRenderer', <br>
+        ...... 'rest_framework.renderers.XMLRenderer', <br>
+        ...... 'rest_framework.renderers.BrowsableAPIRenderer', <br>
+        .. ], <br>
 
+        .. 'DEFAULT_FILTER_BACKENDS': [ <br>
+        ...... 'django_filters.rest_framework.DjangoFilterBackend', <br>
+        ...... 'rest_framework.filters.OrderingFilter', <br>
+        ...... 'rest_framework.filter.SearchFilter', <br>
+        .. ], <br>
+        <br>
+        .. 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', <br>
+        .. 'PAGE_SIZE': 2 <br>
+        <br>
+        <br>
+        Note: page_size property tells drf how many items to show per page* <br>
+        <br>
+        Note: adding search_fields to views.py adds a search bar to top <br>
+        <br>
+        Note: adding ordering_fields to views.py adds ordering section on page for ascend/descend order... <br>
+        <br>
+
+        <br>
 
 
 
 
     </p>
-    <br>
-    <br>
-
-
 
 
 </body>
