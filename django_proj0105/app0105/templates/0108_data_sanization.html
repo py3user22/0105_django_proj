@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        p {border: 2px blue dashed; padding: 5px;}
+        .impo {}
+        .clas {}
+        .miss {color: Green;}
+        .def {color: orange;}
+        .retu {color: red;}
+    </style>
+    <title>0108 django data sinitization demo1</title>
+</head>
+<body>
+    <h2><i>Django data sanitization demo1</i></h2>
+    <p>
+        _____#ex0108 <br>---------<br>
+        <b>Sanitization</b><br>----------------<br>
+        process of cleaning data from potential threats. <br>
+        <br>
+        1- install ' bleach ' pkg <br>
+        >> pipenv install bleach <br>
+        <br>
+    </p>
+    <hr>
+    <p>
+        __serializers.py___#ex0108 adding bleach to sanitize data input from remote <br>------------<br>
+        <a href="impo" class="impo">import</a> bleach <br>
+        <br>
+        <a class="clas" href="clas">class</a> <a href="miss" class="miss">MenuItemSerializer</a>(serializers.ModelSerializer): <br>
+        <br>
+        ..<a href="def" class="def">def</a> validate_title(self, value): <br>
+        ...... <a href="retu" class="retu">return</a> bleach.clean(value) <br>
+        <br>
+        <br>
+        ..<a href="def" class="def">def</a> validate(self, attrs): <br>
+        ...... attr['title'] = bleach.clean(attrs['title]) <br>
+        <br>
+        ...... <a href="if" class="if">if</a>(attrs['price']<2): <br>
+        .......... <a href="rais" class="rais">raise</a> serializers.ValidationError{'')  <br>
+        ...... <a href="if" class="if">if</a>(attrs['inventory']<0): <br>
+        .......... <a href="rais" class="rais">raise</a> serializers.ValidationError{'')  <br>
+        ...... <a href="retu" class="retu">return</a> <b>super()</b>.validate(attrs) <br>
+        <br>
+        <br>
+
+        ..<a class="clas" href="clas">class</a> Meta <br>
+        ...... <br>
+        ...... <br>
+    </p>
+    <p>
+        ___#0108 preventing SQL injection demo1 > use parameter query and no quotes <br>---------------<br>
+
+        limit = request.GET.get('limit') <br>
+        MenuItem.objects.raw('SELECT * FROM app_menuitem LIMIT %s', [limit]) <br>
+        <br>
+
+
+        <br>
+
+    </p>
+</body>
+</html>

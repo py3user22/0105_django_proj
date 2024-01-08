@@ -6,6 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>0107 django filtering demo1 </title>
+    <style>
+        p {border: blue 2px dashed; padding: 5px 10px 5px 5px;}
+    </style>
 </head>
 <body>
     <h2>0107 django filtering demo</h2>
@@ -38,10 +41,16 @@
         ...... category_name = request.query_params.get('category') <br>
         ...... to_price = request.query_params.get('to_price') <br>
         ...... search = request.query_params.get('search') <br>
+        ...... ordering = request.query_params.get('ordering') <br>
         ...... if category_name: <br>
         .......... items = items.filter(category__title=category_name) <br>
         ...... if to_price: <br>
         .......... items = items.filter(price__lte=to_price) <br>
+        ...... if search: <br>
+        .......... items = items.filter(title__contains=search) <br>
+        ...... if ordering: <br>
+        .......... ordering_fields = ordering.split(",") <br>
+        .......... items = items.order_by(*ordering_fields) <br>
 
         ...... serialized_item = MenuItemSerializer(items, many=True) <br>
         ...... <a href="retu" class="retu">return</a> Response(serialized_item.data) <br>
@@ -58,8 +67,53 @@
         <a href="def" class="def">def</a> single_item(request, id): <br>
         .. item = get_object_or_404(MenuItem, pk=id) <br>
         .. serialized_item = MenuItemSerializer(item) <br>
-
-
     </p>
+    <p>
+        __serializers.py ___#ex0107 validation in drf method1 > use in object/variable <br>----------------<br>
+        <a href="class" class="class">class</a> <a href="miss" class="miss"><i><b>MenuItemSerializer</b></i></a>(serializers.ModelSerializer): <br>
+        .. stock = serializers.IntegerField(source='inventory') <br>
+        .. price_after_tax = serializers.SerializerMethodField(method_name='calculate_tax') <br>
+        .. category = CategorySerializer(read_only=True) <br>
+        .. category_id = serializers.IntegerField(write_only=True) <br>
+        .. price = serializers.DecimalField(max_digits=6, decimal_places=2, min_value=2) <br>
+
+        <br>
+        ..<a href="class" class="class">class</a> Meta: <br>
+        ...... model = <a href="meni" class="meni"><b>MenuItem</b></a> <br>
+        ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category', 'category_id'] <br>
+        <br>
+        .. <a href="def" class="def">def</a> calculate_tax(self, product:<a href="meni" class="meni"><b>MenuItem</b></a>): <br>
+        ...... <a href="return" class="return">return</a> product.price * Decimal(1.1) <br>
+        <br>
+        <br>
+        __#ex2 method2> using keyword arguments (kwargs) in Meta class <br>---------------------<br>
+        <br>
+        ..<a href="class" class="class">class</a> Meta: <br>
+        ...... model = <a href="meni" class="meni"><b>MenuItem</b></a> <br>
+        ...... fields = ['id', 'title', 'price', 'stock', 'price_after_tax', 'category', 'category_id'] <br>
+        ...... extra_kwargs = { <br>
+        .......... 'price': {'min_value': 2}, <br>
+        .......... 'stock': {'source': inventory', 'min_value': 0}, <br>
+        ...... }<br>
+    </p>
+    <hr>
+    <p>
+        __serializers.py #0107 edit to MenuItemSerializer add two methods to class <br>------------------------<br>
+        <a href="class" class="class">class</a> MenuItemSerializer(serializers.ModelSerializer): <br>
+        .. <a href="def" class="def">def</a> validate_price(self, value):  <br>
+        ...... if (value < 2): <br>
+        ........... raise serializers.ValidationError('Price should not be less than 2.0') <br>
+        <br>
+        .. <a href="def" class="def">def</a> validate_stock(self, value): <br>
+        ...... if (value < 0): <br>
+        ........... raise serializers.ValidationError('Stock cannot be negative') <br>
+        <br>
+        <br>
+
+        <br>
+        <br>
+        <br>
+    </p>
+
 </body>
 </html>
