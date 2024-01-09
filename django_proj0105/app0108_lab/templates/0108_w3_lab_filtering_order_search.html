@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        p {border: 2px blue dashed;}
+        p {border: 2px blue dashed; padding: 5px;}
     </style>
     <title>0108 w3 lab API > filtering, ordering, searching demo3</title>
 </head>
@@ -15,6 +15,33 @@
     <p>
         ___#0108 w3 lab > API <br>--------------------<br>
         notes: for lab app0108_lab >>  is called LittleLemonDRF  <br>
+        <br>
+        __#0108 views.py > <br>--------------<br>
+        <b>generics.ListCreateAPIView</b><br>---------------<br>
+        used to create read/write endpoints to represent model instances. <br>
+        <br>
+        benefits of filtering? <br>
+        client can request and receive only the data it needs. <br>
+        Using proper filtering, the API code fetches only the essential records from the database, which saves the database server from consuming extra CPU and memory. <br>
+        Since the API server delivers only essential data and strips out everything that is unnecessary, it can save a lot of bandwidth. <br>
+        <br>
+        <br>
+        true about sorting? <br>
+        If you are sorting by multiple fields, you need to separate them with a comma <br>
+        When you add a hyphen in front of a field name in the query string, then it is sorted in descending order. <br>
+        If you included multiple fields in your function or class-based views, then you will be able to sort by multiple fields. <br>
+        <br>
+        <br>
+        can implement caching in... <br>
+        > web server <br>
+        Web servers can cache the output to reduce database loads. There are dedicated caching tools like Redis or Memcached that can be used in the web server, besides database or file-based caching. <br>
+        > database server <br>
+        Database servers can implement query caching to cache the output of the SQL queries. <br>
+        <br>
+        <br>
+        This is the correct setting you need to add in the REST_FRAMEWORK section in the settings.py file to paginate 5 items per page <br>
+        'PAGE_SIZE': 5 <br>
+
 
          <br>
          <br>

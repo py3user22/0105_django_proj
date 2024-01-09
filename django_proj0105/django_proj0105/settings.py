@@ -125,6 +125,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# 0108 default_pagination_class is part of sub-package
+# rest_framework.filters
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_CLASSES': [
         'rest_framework.filters.OrderingFilter',
