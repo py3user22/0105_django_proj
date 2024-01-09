@@ -20,5 +20,8 @@ class MenuItem(models.Model):
 
 
 
+new_open
+
+
 
 
