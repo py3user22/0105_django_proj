@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bdc239f0-47cd-400b-a6ec-e3d6f9a95a22" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_proj0105/app0108_lab/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_proj0105/app0108_lab/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_proj0105/app0108_lab/templates/0108_w3_lab_filtering_order_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/django_proj0105/app0108_lab/templates/0108_w3_lab_filtering_order_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_proj0105/app0108_lab/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_proj0105/app0108_lab/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_proj0105/app0108_lab/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_proj0105/app0108_lab/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_proj0105/django_proj0105/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_proj0105/django_proj0105/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
